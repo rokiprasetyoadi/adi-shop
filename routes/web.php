@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Redirect;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderController;
@@ -17,10 +18,13 @@ use App\Http\Controllers\ProfileController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return Redirect::route('index_product');
 });
 
 Auth::routes();
+
+Route::get('/product', [ProductController::class, 'index_product'])->name('index_product');
+Route::get('/product/{product}', [ProductController::class, 'show_product'])->name('show_product');
 
 Route::middleware(['admin'])->group(function(){
     Route::get('/product/create', [ProductController::class, 'create_product'])->name('create_product');
@@ -32,9 +36,6 @@ Route::middleware(['admin'])->group(function(){
 });
 
 Route::middleware(['auth'])->group(function(){
-    Route::get('/product', [ProductController::class, 'index_product'])->name('index_product');
-    Route::get('/product/{product}', [ProductController::class, 'show_product'])->name('show_product');
-
     Route::post('/cart/{product}', [CartController::class, 'add_to_cart'])->name('add_to_cart');
     Route::get('/cart', [CartController::class, 'show_cart'])->name('show_cart');
     Route::patch('/cart/{cart}', [CartController::class, 'update_cart'])->name('update_cart');
@@ -49,5 +50,4 @@ Route::middleware(['auth'])->group(function(){
     Route::post('/profile', [ProfileController::class, 'edit_profile'])->name('edit_profile');
 });
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 

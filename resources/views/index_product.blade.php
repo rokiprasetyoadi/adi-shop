@@ -8,7 +8,7 @@
                 <div class="card-header">{{ __('All Product') }}</div>
 
                 <div class="card-body">
-                    @if(Auth::user()->is_admin)
+                    @if(Auth::check() && Auth::user()->is_admin)
                         <a href="{{route('create_product')}}"><button class="btn btn-primary" style="margin-bottom: 15px;">Add Product</button></a>
                     @endif
 
@@ -25,7 +25,7 @@
                                     </div>
                                 </div>
                                 <div class="card-footer text-center">
-                                        @if(!Auth::user()->is_admin)
+                                        @if(Auth::check() && !Auth::user()->is_admin)
                                         <form action="{{route('add_to_cart', $data)}}" method="post">
                                             @csrf
                                             <input type="number" name="amount" value="1">
@@ -38,7 +38,7 @@
                                             <button type="submit" class="btn btn-info">Detail</button>
                                         </form>
 
-                                        @if(Auth::user()->is_admin)
+                                        @if(Auth::check() && Auth::user()->is_admin)
                                         <form action="{{route('edit_product', $data)}}" method="get">
                                             @csrf
                                             <button class="btn btn-secondary" type="submit">Edit</button>

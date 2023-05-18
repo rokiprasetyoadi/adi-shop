@@ -17,7 +17,7 @@
                                 <p class="card-text"><small class="text-body-secondary">Stock : {{$product->stock}}</small></p>
                                 <h4>Rp. {{$product->price}}</h4>
                                 <p>
-                                    @if(!Auth::user()->is_admin)
+                                    @if(Auth::check() && !Auth::user()->is_admin)
                                     <form class="row g-3" action="{{route('add_to_cart', $product)}}" method="post">
                                         @csrf
                                         <div class="col-auto">

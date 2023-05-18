@@ -16,11 +16,18 @@ class DatabaseSeeder extends Seeder
     {
         DB::table('users')->insert([
             [
-            'id' => 1,
-            'name' => 'Admin',
-            'email' => 'roxx@gmail.com',
-            'password' => Hash::make('123456789'),
-            'is_admin' => true
+                'id' => 1,
+                'name' => 'Admin',
+                'email' => 'admin@gmail.com',
+                'password' => Hash::make('123456789'),
+                'is_admin' => true
+            ],
+            [
+                'id' => 2,
+                'name' => 'Roki',
+                'email' => 'roxx@gmail.com',
+                'password' => Hash::make('123456789'),
+                'is_admin' => false
             ]
         ]);
     }
