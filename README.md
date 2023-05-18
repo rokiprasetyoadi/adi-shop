@@ -1,2 +1,7 @@
 # adi-shop
- ecommerce using Laravel 10, CRUD
+E-COMMERCE
+
+Detail :
+ Framework  : Laravel 10
+ DB         : MySql
+ PHP Version 8.1.12
